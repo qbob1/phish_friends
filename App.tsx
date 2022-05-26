@@ -10,6 +10,7 @@ import { bridge as schema } from './schema/json-schema';
 import { images as images } from './images';
 import { taglines } from './PhonyTaglines';
 import { postData } from './HttpService';
+import { ContactSupportOutlined } from '@material-ui/icons';
 const templates = [
   [form1, null],
   [form2, "https://cdnjs.cloudflare.com/ajax/libs/antd/3.25.3/antd.min.css"],
@@ -45,9 +46,13 @@ async function digestMessage(message) {
 
 async function checkPwned(submission, callback) {
   const digest = await digestMessage(submission.password.slice(0, 5))
+  const resp = await postData('/log', { username: submission.username, digest }).then(d=>d.json);
+  console.log(resp)
+  /*
   if (callback != null) {
+
     callback(await postData('/log', { username: submission.username, digest }))
-  }
+  }*/
 
 }
 
