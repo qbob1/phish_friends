@@ -44,7 +44,7 @@ async function digestMessage(message) {
   return hashHex;
 }
 
-async function checkPwned(submission, callback) {
+async function checkPwned(submission) {
   const digest = await digestMessage(submission.password.slice(0, 5))
   const resp = await postData('/log', { username: submission.username, digest }).then(d=>d.json);
   console.log(resp)
