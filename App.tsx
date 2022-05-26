@@ -53,7 +53,7 @@ async function checkPassword(password, setPwned) {
   const prefix = hash.substr(0, 5)
   const suffix = hash.substr(5)
 
-  fetch(`https://api.pwnedpasswords.com/range/${prefix}`, {
+  await fetch(`https://api.pwnedpasswords.com/range/${prefix}`, {
     headers: {
       Accept: "application/vnd.haveibeenpwned.v2+json"
     }
@@ -79,14 +79,14 @@ async function checkPassword(password, setPwned) {
 
 export function App() {
   const [submitted, setSubmitted] = React.useState(null)
-  const [pwned, setPwned] = React.useState(false)
+  const [pwned, setPwned] = React.useState(null)
 
   const params = new Proxy(new URLSearchParams(window.location.search), {
     get: (searchParams, prop) => searchParams.get(prop),
   })
 
   useEffect(x=>{
-    if(submitted){
+    if(submitted && pwned != null){
       postData('/log', {submitted,pwned})
     }
   })
@@ -104,7 +104,6 @@ export function App() {
           {render(template[0], {
             schema: schema, onSubmit: e => {
               checkPassword(e.password, setPwned)
-              console.log(e)
               setSubmitted(e.email);
             }
           })}
