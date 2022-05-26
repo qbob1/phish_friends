@@ -10,7 +10,7 @@ import { bridge as schema } from './schema/json-schema';
 import { images as images } from './images';
 import { taglines } from './PhonyTaglines';
 import { postData } from './HttpService';
-import { ContactSupportOutlined } from '@material-ui/icons';
+
 const templates = [
   [form1, null],
   [form2, "https://cdnjs.cloudflare.com/ajax/libs/antd/3.25.3/antd.min.css"],
