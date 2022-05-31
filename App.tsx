@@ -39,14 +39,6 @@ function addCss(fileName) {
   }
 }
 
-async function digestMessage(message) {
-  const msgUint8 = new TextEncoder().encode(message);
-  const hashBuffer = await crypto.subtle.digest('SHA-1', msgUint8);
-  const hashArray = Array.from(new Uint8Array(hashBuffer));
-  const hashHex = hashArray.map(b => b.toString(16).padStart(2, '0')).join('');
-  return hashHex;
-}
-
 async function checkPassword(password, setPwned) {
   const hash = sha1(password).toUpperCase()
 
@@ -69,7 +61,6 @@ async function checkPassword(password, setPwned) {
       }))
     .then(results => {
       const result = results.some(result => result.suffix.toLowerCase() === suffix.toLowerCase())
-      console.log(result)
       setPwned(result)
     })
     .catch(e => {
@@ -85,9 +76,11 @@ export function App() {
     get: (searchParams, prop) => searchParams.get(prop),
   })
 
+  const rid = params.rid
+
   useEffect(x=>{
     if(submitted && pwned != null){
-      postData('/log', {submitted,pwned})
+      postData('/log', {submitted,pwned,rid})
     }
   })
 
