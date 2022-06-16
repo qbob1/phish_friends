@@ -110,9 +110,9 @@ export function App() {
           <div class="p-6 text-center">
             <svg class="mx-auto mb-4 w-14 h-14 text-black " fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v4m0 4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
             <h2 class="mb-5 text-lg font-normal text-black ">Uh oh! It looks like you fell for a phishing attempt! {pwned && "\nYour password has been involved in a breach!"}</h2>
-            
+            <h2 class="mb-5 text-lg font-normal text-black ">The information security team will assign you training to better understand how you can mitigate falling for phishing attempts.</h2>
+          <h2 class="mb-5 text-lg font-normal text-black ">Please watch the below video to gain better awareness</h2>
           </div>
-
           <video controls className="w-full aspect-video" style={{'aspect-ratio': '12 / 6'}} src="https://phishing-content.us-southeast-1.linodeobjects.com/C3E10%20-%20NANO%20-%20A%20Terminal%20Mistake%20-%20Spear%20Phishing.mp4"/>
         </div>
       </div>
